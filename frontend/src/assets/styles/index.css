@@ -52,6 +52,15 @@ table th {
   background: rgba(0, 0, 0, 0.5);
 }
 
+.card{
+  text-decoration: none !important;
+  color: initial !important;
+}
+
+.card-img{
+  mix-blend-mode: multiply;
+}
+
 .card-title{
   text-decoration: none !important;
   color: inherit !important;

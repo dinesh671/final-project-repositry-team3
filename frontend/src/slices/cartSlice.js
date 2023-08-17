@@ -24,6 +24,7 @@ const cartSlice = createSlice({
 
       return updateCart(state, item);
     },
+
     removeFromCart: (state, action) => {
       state.cartItems = state.cartItems.filter((x) => x._id !== action.payload);
       return updateCart(state);
@@ -40,8 +41,6 @@ const cartSlice = createSlice({
       state.cartItems = [];
       localStorage.setItem('cart', JSON.stringify(state));
     },
-    // NOTE: here we need to reset state for when a user logs out so the next
-    // user doesn't inherit the previous users cart and shipping
     resetCart: (state) => (state = initialState),
   },
 });
