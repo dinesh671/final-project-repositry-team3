@@ -9,7 +9,7 @@ const Rating = ({ value, text, color }) => {
         ) : value >= 0.5 ? (
           <FaStarHalfAlt />
         ) : (
-          <FaRegStar />
+          <FaRegStar/>
         )}
       </span>
       <span>

@@ -17,6 +17,8 @@ const authUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      address:user.address,
+      phonenumber:user.phonenumber,
       isAdmin: user.isAdmin,
     });
   } else {
@@ -81,7 +83,10 @@ const getUserProfile = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      address:user.address,
+      phonenumber:user.phonenumber,
       isAdmin: user.isAdmin,
+
     });
   } else {
     res.status(404);
@@ -98,6 +103,9 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   if (user) {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
+    user.address  = req.body.address || user.address;
+    user.phonenumber = req.body.phonenumber || user.phonenumber;
+
 
     if (req.body.password) {
       user.password = req.body.password;
@@ -109,8 +117,11 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
+      address:updatedUser.address,
+      phonenumber:updateUser.phonenumber,
       isAdmin: updatedUser.isAdmin,
     });
+    console.log(user)
   } else {
     res.status(404);
     throw new Error('User not found');

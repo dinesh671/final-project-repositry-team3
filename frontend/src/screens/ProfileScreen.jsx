@@ -16,6 +16,8 @@ const ProfileScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [address, setAddress] = useState('');
+  const [phonenumber,setPhonenumber]=useState('');
 
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -27,7 +29,9 @@ const ProfileScreen = () => {
   useEffect(() => {
     setName(userInfo.name);
     setEmail(userInfo.email);
-  }, [userInfo.email, userInfo.name]);
+    setAddress(userInfo.address);
+    setPhonenumber(userInfo.phonenumber);
+  }, [userInfo.email, userInfo.name, userInfo.address,userInfo.phonenumber]);
 
   const dispatch = useDispatch();
   const submitHandler = async (e) => {
@@ -41,6 +45,8 @@ const ProfileScreen = () => {
           name,
           email,
           password,
+          address,
+          phonenumber,
         }).unwrap();
         dispatch(setCredentials({ ...res }));
         toast.success('Profile updated successfully');
@@ -93,6 +99,26 @@ const ProfileScreen = () => {
               placeholder='Confirm password'
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+
+          <Form.Group className='my-2' controlId='Address'>
+            <Form.Label>Address</Form.Label>
+            <Form.Control
+              type='address'
+              as='textarea'
+              placeholder='Address'
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+          <Form.Group className='my-2' controlId='Phonenumber'>
+            <Form.Label>Phonenumber</Form.Label>
+            <Form.Control
+              type='text'
+              placeholder='Phonenumber'
+              value={phonenumber}
+              onChange={(e) => setPhonenumber(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
