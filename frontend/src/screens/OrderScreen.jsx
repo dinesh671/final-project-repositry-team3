@@ -87,7 +87,8 @@ const OrderScreen = () => {
       .create({
         purchase_units: [
           {
-            amount: { value: order.totalPrice },
+            amount: { value: order.totalPrice,
+             },
           },
         ],
       })
@@ -122,8 +123,8 @@ const OrderScreen = () => {
               </p>
               <p>
                 <strong>Address:</strong>
-                {order.shippingAddress.address}, {order.shippingAddress.city}{' '}
-                {order.shippingAddress.postalCode},{' '}
+                {order.shippingAddress.address}, {order.shippingAddress.city}{' '},
+                {order.shippingAddress.postalCode},{' '}{order.shippingAddress.state},{' '}
                 {order.shippingAddress.country}
               </p>
               {order.isDelivered ? (
@@ -131,7 +132,7 @@ const OrderScreen = () => {
                   Delivered on {order.deliveredAt}
                 </Message>
               ) : (
-                <Message variant='warning'>Not Delivered</Message>
+                <Message variant='warning'>Order in Process</Message>
               )}
             </ListGroup.Item>
 
@@ -157,7 +158,7 @@ const OrderScreen = () => {
                   {order.orderItems.map((item, index) => (
                     <ListGroup.Item key={index}>
                       <Row>
-                        <Col md={1}>
+                        <Col md={2}>
                           <Image
                             src={item.image}
                             alt={item.name}
@@ -189,7 +190,7 @@ const OrderScreen = () => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Items</Col>
+                  <Col>Price</Col>
                   <Col>&#8377;{order.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
