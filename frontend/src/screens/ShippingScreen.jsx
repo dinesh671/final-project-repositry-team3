@@ -18,6 +18,7 @@ const ShippingScreen = () => {
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode || '');
   const [country, setCountry] = useState(shippingAddress.country || '');
   const [state, setState] = useState(shippingAddress.state || '');
+  
 
   const [statesForSelectedCountry, setStatesForSelectedCountry] = useState([]);
   const [citiesForSelectedState, setCitiesForSelectedState] = useState([]);
