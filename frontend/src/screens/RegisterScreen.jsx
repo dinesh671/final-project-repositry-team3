@@ -43,11 +43,27 @@ const RegisterScreen = () => {
         dispatch(setCredentials({ ...res }));
         navigate(redirect);
       } catch (err) {
-        toast.error(err?.data?.message || err.error);
+        if (err.response && err.response.status === 400 && err.response.data.errors) {
+          const validationErrors = err.response.data.errors;
+          const errorMessages = [];
+          if (validationErrors.name) {
+            errorMessages.push(validationErrors.name.message);
+          }
+          if (validationErrors.email) {
+            errorMessages.push(validationErrors.email.message);
+          }
+          if (validationErrors.password) {
+            errorMessages.push(validationErrors.password.message);
+          }
+          toast.error(errorMessages.join(', '));
+        } else {
+          toast.error(err.message || 'please enter required details.');
+          
+          
+        }
       }
     }
-  };
-
+  }    
   return (
     <FormContainer>
       <h1>Register</h1>

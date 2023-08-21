@@ -113,10 +113,10 @@ const ProfileScreen = () => {
             ></Form.Control>
           </Form.Group>
           <Form.Group className='my-2' controlId='Phonenumber'>
-            <Form.Label>Phonenumber</Form.Label>
+            <Form.Label>Phone Number</Form.Label>
             <Form.Control
               type='text'
-              placeholder='Phonenumber'
+              placeholder='Phone Number'
               value={phonenumber}
               onChange={(e) => setPhonenumber(e.target.value)}
             ></Form.Control>
