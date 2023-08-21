@@ -3,14 +3,15 @@ function addDecimals(num) {
 }
 
 export function calcPrices(orderItems) {
+  // Calculate the items price
   const itemsPrice = addDecimals(
     orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
   );
-  
-  const shippingPrice = addDecimals(itemsPrice > 100 ? 0 : 10);
-  
-  const taxPrice = addDecimals(Number((0.15 * itemsPrice).toFixed(2)));
-
+  // Calculate the shipping price
+  const shippingPrice = addDecimals(itemsPrice > 100 ? 0 : itemsPrice*6/100);
+  // Calculate the tax price
+  const taxPrice = addDecimals(Number((0.18 * itemsPrice).toFixed(2)));
+  // Calculate the total price
   const totalPrice = (
     Number(itemsPrice) +
     Number(shippingPrice) +
