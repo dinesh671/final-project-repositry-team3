@@ -21,10 +21,11 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import Meta from '../components/Meta';
 import { addToCart } from '../slices/cartSlice';
+import RatingStars from 'react-rating-stars-component';
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
-
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -34,7 +35,7 @@ const ProductScreen = () => {
 
   const addToCartHandler = () => {
     dispatch(addToCart({ ...product, qty }));
-    navigate('/cart');
+    // navigate('/cart');
   };
 
   const {
@@ -180,7 +181,7 @@ const ProductScreen = () => {
                     <Form onSubmit={submitHandler}>
                       <Form.Group className='my-2' controlId='rating'>
                         <Form.Label>Rating</Form.Label>
-                        <Form.Control
+                        {/* <Form.Control
                           as='select'
                           required
                           value={rating}
@@ -192,7 +193,16 @@ const ProductScreen = () => {
                           <option value='3'>3 - Good</option>
                           <option value='4'>4 - Very Good</option>
                           <option value='5'>5 - Excellent</option>
-                        </Form.Control>
+                        </Form.Control> */}
+                        <RatingStars
+                  count={5}
+                  size={24}
+                  activeColor="#ffd700"
+                  value={rating}
+                  isHalf={true} 
+                  onChange={(newRating) => setRating(newRating)}
+                />
+
                       </Form.Group>
                       <Form.Group className='my-2' controlId='comment'>
                         <Form.Label>Comment</Form.Label>
