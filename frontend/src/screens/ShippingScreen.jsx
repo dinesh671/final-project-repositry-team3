@@ -1,359 +1,4 @@
-// import { useState } from 'react';
-// import { Form, Button } from 'react-bootstrap';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
-// import FormContainer from '../components/FormContainer';
-// import CheckoutSteps from '../components/CheckoutSteps';
-// import { saveShippingAddress } from '../slices/cartSlice';
-// import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
-// import { Country, State, City }  from 'country-state-city';
-// import Pincode from 'react-pincode';
-
-
-
-// const ShippingScreen = () => {
-//   const cart = useSelector((state) => state.cart);
-//   const { shippingAddress } = cart;
-
-//   const [address, setAddress] = useState(shippingAddress.address || '');
-//   const [city, setCity] = useState(shippingAddress.city || '');
-//   const [postalCode, setPostalCode] = useState(
-//     shippingAddress.postalCode || ''
-//   );
-//   const [country, setCountry] = useState(shippingAddress.country || '');
-//   const [state, setState] = useState(shippingAddress.state || '');
-  
-
-//   const dispatch = useDispatch();
-//   const navigate = useNavigate();
-
-//   const submitHandler = (e) => {
-//     e.preventDefault();
-
-//      // Basic validation checks
-//      if (!address || !city || !postalCode || !country || !state) {
-//       // Display an error message or handle the validation error
-//       toast.error('Please fill in all required fields.');
-//       return;
-//     }
-
-
-// // Postal code validation
-// const postalCodePattern = /^\d{6}$/; // Six digits pattern
-// if (!postalCodePattern.test(postalCode)) {
-//   // Display an error message or handle the postal code validation error
-//   toast.error('Invalid postal code format.');
-//   return;
-// }
-
-// // const validPostalCodes = Pincode.getAllPincode().map((postalCode) => postalCode.value);
-
-// // if (!validPostalCodes.includes(postalCode)) {
-// //   // Display an error message or handle the invalid postal code error
-// //   toast.error('Invalid postal code for India.');
-// //   return;
-// // }
-
-
-//     // Check if state is valid
-//     // const validStates = [
-//     //   'Andaman and Nicobar Islands', 'Andhra Pradesh', 'Arunachal Pradesh', 'Assam',
-//     //   'Bihar', 'Chandigarh', 'Chhattisgarh', 'Dadra and Nagar Haveli and Daman and Diu',
-//     //   'Delhi', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jammu and Kashmir',
-//     //   'Jharkhand', 'Karnataka', 'Kerala', 'Ladakh', 'Lakshadweep', 'Madhya Pradesh',
-//     //   'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Puducherry',
-//     //   'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh',
-//     //   'Uttarakhand', 'West Bengal'
-//     // ];
-//     const validStates = State.getAllStates().map((state) => state.name);
-//     // List of valid states
-//     if (!validStates.includes(state)) {
-//       toast.error('Selected state is not valid.');
-//       return;
-//     }
-
-//     // Check if country exists in your available country list
-//     // const availableCountries = ['India']; // List of available countries
-//      const availableCountries = Country.getAllCountries().map(
-//       (country) => country.name
-//     );
-//     if (!availableCountries.includes(country)) {
-//       // Display an error message or handle the country validation error
-//       toast.error('Selected country is not available.');
-//       return;
-//     }
-
-//     // Check if city exists in your available city list
-//     // const availableCities = [
-//     //   'Mumbai', 'Delhi', 'Bangalore', 'Kolkata', 'Chennai', 'Hyderabad', 'Pune', 'Ahmedabad',
-//     //   'Jaipur', 'Lucknow', 'Kanpur', 'Nagpur', 'Indore', 'Thane', 'Bhopal', 'Visakhapatnam',
-//     //   'Pimpri-Chinchwad', 'Patna', 'Vadodara', 'Ghaziabad', 'Ludhiana', 'Agra', 'Nashik', 'Faridabad','Ujjain'
-//     //   // Add more city names here
-//     // ];
-
-//     const availableCities = City.getAllCities().map((city) => city.name);
-    
-//     if (!availableCities.includes(city)) {
-//       // Display an error message or handle the city validation error
-//       toast.error('Selected city is not available.');
-//       return;
-//     }
-//     // toast.error('Please fill in all required fields.', { position: toast.POSITION.TOP_CENTER });
-
-   
-
-
-//     dispatch(saveShippingAddress({ address, city, postalCode, country , state}));
-//     navigate('/payment');
-//   };
-
-//   return (
-//     <FormContainer>
-//       <CheckoutSteps step1 step2 />
-//       <h1>Shipping</h1>
-//       <Form onSubmit={submitHandler}>
-       
-//         <Form.Group className='my-2' controlId='country'>
-//           <Form.Label>Country</Form.Label>
-//           <Form.Control
-//             type='text'          
-//             placeholder='Enter country'
-//             value={country}
-//             onChange={(e) => setCountry(e.target.value.replace(/[^A-Za-z\s]/gi, ""))}
-//           ></Form.Control>
-//         </Form.Group>
-
-//         <Form.Group className='my-2' controlId='state'>
-//           <Form.Label>State</Form.Label>
-//           <Form.Control
-//             type='text'          
-//             placeholder='Enter state'
-//             value={state}
-//             onChange={(e) => setState(e.target.value.replace(/[^A-Za-z\s]/gi, ""))}
-//           />
-//         </Form.Group>
-
-//         <Form.Group className='my-2' controlId='city'>
-//           <Form.Label>City</Form.Label>
-//           <Form.Control
-//             type='text'
-//             placeholder='Enter city'
-//             value={city}
-//             onChange={(e) => setCity(e.target.value.replace(/[^A-Za-z\s]/gi, ""))}
-//           ></Form.Control>
-//         </Form.Group>
-
-//         <Form.Group className='my-2' controlId='postalCode'>
-//           <Form.Label>Postal Code</Form.Label>
-//           <Form.Control
-//             type='number'
-//             placeholder='Enter postal code'
-//             value={postalCode}
-//             onChange={(e) => setPostalCode(e.target.value.replace(/[^0-9]/g, ""))}
-//           ></Form.Control>
-//         </Form.Group>
-
-       
-
-//         <Form.Group className='my-2' controlId='address'>
-//           <Form.Label>Address</Form.Label>
-//           <Form.Control
-//             type='text'
-//             placeholder='Enter address'
-//             value={address}
-//             onChange={(e) => setAddress(e.target.value)}
-//           ></Form.Control>
-//         </Form.Group>
-
-//         <Button type='submit' variant='primary'>
-//           Continue
-//         </Button>
-//       </Form>
-//     </FormContainer>
-//   );
-// };
-
-// export default ShippingScreen;
-
-
-
-
-
-
-// import { useState } from 'react';
-// import { Form, Button } from 'react-bootstrap';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
-// import FormContainer from '../components/FormContainer';
-// import CheckoutSteps from '../components/CheckoutSteps';
-// import { saveShippingAddress } from '../slices/cartSlice';
-// import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
-// import { Country, State, City }  from 'country-state-city';
-// import Pincode from 'react-pincode';
-
-
-
-// const ShippingScreen = () => {
-//   const cart = useSelector((state) => state.cart);
-//   const { shippingAddress } = cart;
-
-//   const [address, setAddress] = useState(shippingAddress.address || '');
-//   const [city, setCity] = useState(shippingAddress.city || '');
-//   const [postalCode, setPostalCode] = useState(
-//     shippingAddress.postalCode || ''
-//   );
-//   const [country, setCountry] = useState(shippingAddress.country || '');
-//   const [state, setState] = useState(shippingAddress.state || '');
-  
-  
-
-//   const dispatch = useDispatch();
-//   const navigate = useNavigate();
-
-// const submitHandler = (e) => {
-//     e.preventDefault();
-
-//     // Basic validation checks
-//     if (!address || !city || !postalCode || !country || !state) {
-//       // Display an error message or handle the validation error
-//       toast.error('Please fill in all required fields.');
-//       return;
-//     }
-
-//     // Postal code validation
-//     const postalCodePattern = /^\d{6}$/; // Six digits pattern
-//     if (!postalCodePattern.test(postalCode)) {
-//       // Display an error message or handle the postal code validation error
-//       toast.error('Invalid postal code format.');
-//       return;
-//     }
-
-//     // Check if the country is valid
-//     const selectedCountryObj = Country.getAllCountries().find((c) => c.name === country);
-//     const validCountries = Country.getAllCountries().map((country) => country.name);
-//       if (!validCountries.includes(country)) {
-//       toast.error('Selected country is not available.');
-//       return;
-//     }
-
-//     const selectedCountryIsoCode = selectedCountryObj.isoCode;
-
-//     // Check if the state is valid
-//     const statesForSelectedCountry = State.getStatesOfCountry(selectedCountryIsoCode);
-//     const selectedStateObj = State.getStatesOfCountry(selectedCountryIsoCode).find((s) => s.name === state);
-//     const validStateNames = statesForSelectedCountry.map((state) => state.name);
-//     if (!validStateNames.includes(state)) {
-//       toast.error('Selected state is not valid.');
-//       return;
-//     }
-//     const selectedStateIsoCode = selectedStateObj.isoCode;
-
-//     // Check if the city is valid
-//     const citiesForSelectedState = City.getCitiesOfState(selectedCountryIsoCode, selectedStateIsoCode);
-//     const validCityNames = citiesForSelectedState.map((city) => city.name);
-//     if (!validCityNames.includes(city)) {
-//       toast.error('Selected city is not available.');
-//       return;
-//     }
-
-//     // Fetch related data based on postal code using an API call
-//     fetch(`https://api.postalpincode.in/pincode/${postalCode}`)
-//       .then(response => response.json())
-//       .then(data => {
-//         if (data[0]?.Status === 'Success') {
-//           const validPostalCodes = data[0]?.PostOffice?.map(postOffice => postOffice.Pincode);
-//           if (!validPostalCodes.includes(postalCode)) {
-//             toast.error('Invalid postal code for India.');
-//             return;
-//           }
-//         } else {
-//           toast.error('Invalid postal code for India.');
-//           return;
-//         }
-
-//         // Continue with saving shipping address and navigating
-//         dispatch(saveShippingAddress({ address, city, postalCode, country, state }));
-//         navigate('/payment');
-//       })
-//       .catch(error => {
-//         toast.error('Error fetching postal code data.');
-//       });
-//   };
-
-
-//   return (
-//     <FormContainer>
-//       <CheckoutSteps step1 step2 />
-//       <h1>Shipping</h1>
-//       <Form onSubmit={submitHandler}>
-       
-//         <Form.Group className='my-2' controlId='country'>
-//           <Form.Label>Country</Form.Label>
-//           <Form.Control
-//             type='text'          
-//             placeholder='Enter country'
-//             value={country}
-//             onChange={(e) => setCountry(e.target.value.replace(/[^A-Za-z\s]/gi, ""))}
-//           ></Form.Control>
-//         </Form.Group>
-
-//         <Form.Group className='my-2' controlId='state'>
-//           <Form.Label>State</Form.Label>
-//           <Form.Control
-//             type='text'          
-//             placeholder='Enter state'
-//             value={state}
-//             onChange={(e) => setState(e.target.value.replace(/[^A-Za-z\s]/gi, ""))}
-//           />
-//         </Form.Group>
-
-//         <Form.Group className='my-2' controlId='city'>
-//           <Form.Label>City</Form.Label>
-//           <Form.Control
-//             type='text'
-//             placeholder='Enter city'
-//             value={city}
-//             onChange={(e) => setCity(e.target.value.replace(/[^A-Za-z\s]/gi, ""))}
-//           ></Form.Control>
-//         </Form.Group>
-
-//         <Form.Group className='my-2' controlId='postalCode'>
-//           <Form.Label>Postal Code</Form.Label>
-//           <Form.Control
-//             type='number'
-//             placeholder='Enter postal code'
-//             value={postalCode}
-//             onChange={(e) => setPostalCode(e.target.value.replace(/[^0-9]/g, ""))}
-//           ></Form.Control>
-//         </Form.Group>
-
-       
-
-//         <Form.Group className='my-2' controlId='address'>
-//           <Form.Label>Address</Form.Label>
-//           <Form.Control
-//             type='text'
-//             placeholder='Enter address'
-//             value={address}
-//             onChange={(e) => setAddress(e.target.value)}
-//           ></Form.Control>
-//         </Form.Group>
-
-//         <Button type='submit' variant='primary'>
-//           Continue
-//         </Button>
-//       </Form>
-//     </FormContainer>
-//   );
-// };
-
-// export default ShippingScreen;
-
-
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -362,10 +7,7 @@ import CheckoutSteps from '../components/CheckoutSteps';
 import { saveShippingAddress } from '../slices/cartSlice';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
-import { Country, State, City }  from 'country-state-city';
-import Pincode from 'react-pincode';
-
-
+import { Country, State, City } from 'country-state-city';
 
 const ShippingScreen = () => {
   const cart = useSelector((state) => state.cart);
@@ -373,17 +15,53 @@ const ShippingScreen = () => {
 
   const [address, setAddress] = useState(shippingAddress.address || '');
   const [city, setCity] = useState(shippingAddress.city || '');
-  const [postalCode, setPostalCode] = useState(
-    shippingAddress.postalCode || ''
-  );
+  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode || '');
   const [country, setCountry] = useState(shippingAddress.country || '');
   const [state, setState] = useState(shippingAddress.state || '');
-  
-  
+
+  const [statesForSelectedCountry, setStatesForSelectedCountry] = useState([]);
+  const [citiesForSelectedState, setCitiesForSelectedState] = useState([]);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (country) {
+      const selectedCountryIsoCodeData = Country.getAllCountries().find(
+        (c) => c.name === country
+      );
+
+      if (selectedCountryIsoCodeData) {
+        const selectedCountryIsoCode = selectedCountryIsoCodeData.isoCode;
+        const states = State.getStatesOfCountry(selectedCountryIsoCode);
+        setStatesForSelectedCountry(states);
+      }
+    }
+  }, [country]);
+
+  useEffect(() => {
+    if (country && state) {
+      const selectedCountryIsoCodeData = Country.getAllCountries().find(
+        (c) => c.name === country
+      );
+
+      if (selectedCountryIsoCodeData) {
+        const selectedCountryIsoCode = selectedCountryIsoCodeData.isoCode;
+        const selectedStateIsoCodeData = State.getStatesOfCountry(selectedCountryIsoCode).find(
+          (s) => s.name === state
+        );
+
+        if (selectedStateIsoCodeData) {
+          const selectedStateIsoCode = selectedStateIsoCodeData.isoCode;
+          const cities = City.getCitiesOfState(selectedCountryIsoCode, selectedStateIsoCode);
+          setCitiesForSelectedState(cities);
+        }
+      }
+    }
+  }, [country, state]);
+
+  
+  
 const submitHandler = (e) => {
     e.preventDefault();
 
@@ -403,32 +81,37 @@ const submitHandler = (e) => {
     }
 
     // Check if the country is valid
-    const selectedCountryObj = Country.getAllCountries().find((c) => c.name === country);
+    const selectedCountryIsoCodeData = Country.getAllCountries().find((c) => c.name === country);
     const validCountries = Country.getAllCountries().map((country) => country.name);
+    // console.log('country', validCountries);
       if (!validCountries.includes(country)) {
       toast.error('Selected country is not available.');
       return;
     }
 
-    const selectedCountryIsoCode = selectedCountryObj.isoCode;
+    const selectedCountryIsoCode = selectedCountryIsoCodeData.isoCode;
 
     // Check if the state is valid
     const statesForSelectedCountry = State.getStatesOfCountry(selectedCountryIsoCode);
-    const selectedStateObj = State.getStatesOfCountry(selectedCountryIsoCode).find((s) => s.name === state);
+    // console.log('state', statesForSelectedCountry);
+    const selectedStateIsoCodeData = State.getStatesOfCountry(selectedCountryIsoCode).find((s) => s.name === state);
     const validStateNames = statesForSelectedCountry.map((state) => state.name);
     if (!validStateNames.includes(state)) {
       toast.error('Selected state is not valid.');
       return;
     }
-    const selectedStateIsoCode = selectedStateObj.isoCode;
+    const selectedStateIsoCode = selectedStateIsoCodeData.isoCode;
 
     // Check if the city is valid
     const citiesForSelectedState = City.getCitiesOfState(selectedCountryIsoCode, selectedStateIsoCode);
     const validCityNames = citiesForSelectedState.map((city) => city.name);
+    // console.log('city', citiesForSelectedState);
     if (!validCityNames.includes(city)) {
       toast.error('Selected city is not available.');
       return;
     }
+
+  
 
     // Fetch related data based on postal code using an API call
     fetch(`https://api.postalpincode.in/pincode/${postalCode}`)
@@ -454,78 +137,83 @@ const submitHandler = (e) => {
       });
   };
 
+ 
+
 
   return (
+   
     <FormContainer>
-      <CheckoutSteps step1 step2 />
-      <h1>Shipping</h1>
-      <Form onSubmit={submitHandler}>
-       
-       {/* Country Dropdown */}
-       <Form.Group className='my-2' controlId='country'>
-          <Form.Label>Country</Form.Label>
-          <Form.Control
-            as='select'
-            value={country}
-            onChange={(e) => setCountry(e.target.value.replace(/[^A-Za-z\s]/gi, ""))}
+    <CheckoutSteps step1 step2 />
+    <h1>Shipping</h1>
+    <Form onSubmit={submitHandler}>
+      <Form.Group className='my-2' controlId='country'>
+        <Form.Label>Country</Form.Label>
+        <Form.Control
+          type='text'
+          placeholder='Enter country'
+          value={country}
+          onChange={(e) => setCountry(e.target.value.replace(/[^A-Za-z\s]/gi, ''))}
+          list='countryList'
+        />
+      </Form.Group>
 
-          >
-            <option value=''>Select a country</option>
-            {Country.getAllCountries().map((country) => (
-              <option key={country.name} value={country.name}>
-                {country.name}
-              </option>
-            ))}
-          </Form.Control>
-        </Form.Group>
+      <Form.Group className='my-2' controlId='state'>
+        <Form.Label>State</Form.Label>
+        <Form.Control
+          type='text'
+          placeholder='Enter state'
+          value={state}
+          onChange={(e) => setState(e.target.value.replace(/[^A-Za-z\s]/gi, ''))}
+          list='stateList'
+        />
+        <datalist id='stateList'>
+          {statesForSelectedCountry.map((state) => (
+            <option key={state.isoCode} value={state.name} />
+          ))}
+        </datalist>
+      </Form.Group>
 
-        <Form.Group className='my-2' controlId='state'>
-          <Form.Label>State</Form.Label>
-          <Form.Control
-            type='text'          
-            placeholder='Enter state'
-            value={state}
-            onChange={(e) => setState(e.target.value.replace(/[^A-Za-z\s]/gi, ""))}
-          />
-        </Form.Group>
+      <Form.Group className='my-2' controlId='city'>
+        <Form.Label>City</Form.Label>
+        <Form.Control
+          type='text'
+          placeholder='Enter city'
+          value={city}
+          onChange={(e) => setCity(e.target.value.replace(/[^A-Za-z\s]/gi, ''))}
+          list='cityList'
+        />
+        <datalist id='cityList'>
+          {citiesForSelectedState.map((city) => (
+            <option key={city.name} value={city.name} />
+          ))}
+        </datalist>
+      </Form.Group>
 
-        <Form.Group className='my-2' controlId='city'>
-          <Form.Label>City</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Enter city'
-            value={city}
-            onChange={(e) => setCity(e.target.value.replace(/[^A-Za-z\s]/gi, ""))}
-          ></Form.Control>
-        </Form.Group>
+      <Form.Group className='my-2' controlId='postalCode'>
+        <Form.Label>Postal Code</Form.Label>
+        <Form.Control
+          type='number'
+          placeholder='Enter postal code'
+          value={postalCode}
+          onChange={(e) => setPostalCode(e.target.value.replace(/[^0-9]/g, ''))}
+        />
+      </Form.Group>
 
-        <Form.Group className='my-2' controlId='postalCode'>
-          <Form.Label>Postal Code</Form.Label>
-          <Form.Control
-            type='number'
-            placeholder='Enter postal code'
-            value={postalCode}
-            onChange={(e) => setPostalCode(e.target.value.replace(/[^0-9]/g, ""))}
-          ></Form.Control>
-        </Form.Group>
+      <Form.Group className='my-2' controlId='address'>
+        <Form.Label>Address</Form.Label>
+        <Form.Control
+          type='text'
+          placeholder='Enter address'
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+        />
+      </Form.Group>
 
-       
-
-        <Form.Group className='my-2' controlId='address'>
-          <Form.Label>Address</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Enter address'
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-
-        <Button type='submit' variant='primary'>
-          Continue
-        </Button>
-      </Form>
-    </FormContainer>
+      <Button type='submit' variant='primary'>
+        Continue
+      </Button>
+    </Form>
+  </FormContainer>
   );
 };
 

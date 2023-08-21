@@ -132,7 +132,7 @@ const OrderScreen = () => {
                   Delivered on {order.deliveredAt}
                 </Message>
               ) : (
-                <Message variant='warning'>Order in Process</Message>
+                <Message variant='success'>Order Placed</Message>
               )}
             </ListGroup.Item>
 
