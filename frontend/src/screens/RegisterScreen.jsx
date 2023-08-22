@@ -56,11 +56,11 @@ const RegisterScreen = () => {
             errorMessages.push(validationErrors.password.message);
           }
           toast.error(errorMessages.join(', '));
-        // } else {
-        //   toast.error(err.message || 'please enter required details.');
+        } else {
+          toast.error(err.message || 'please enter required details.');
           
           
-        // }
+        
         }
       }
     }
@@ -78,7 +78,6 @@ const RegisterScreen = () => {
             onChange={(e) => setName(e.target.value)}
           ></Form.Control>
         </Form.Group>
-
         <Form.Group className='my-2' controlId='email'>
           <Form.Label>Email Address</Form.Label>
           <Form.Control
@@ -90,13 +89,27 @@ const RegisterScreen = () => {
         </Form.Group>
 
         <Form.Group className='my-2' controlId='password'>
+
           <Form.Label>Password</Form.Label>
+
           <Form.Control
+
             type='password'
+
             placeholder='Enter password'
+
             value={password}
+
             onChange={(e) => setPassword(e.target.value)}
+
+            pattern='^(?=.*\d).{4,16}$'
+
+            title='Password must be 4 to 16 characters and include at least one digit'
+
+            
+
           ></Form.Control>
+
         </Form.Group>
         <Form.Group className='my-2' controlId='confirmPassword'>
           <Form.Label>Confirm Password</Form.Label>
