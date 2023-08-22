@@ -1,5 +1,8 @@
 import { Navbar, Nav, Container, NavDropdown, Badge } from 'react-bootstrap';
-import { FaShoppingCart, FaUser } from 'react-icons/fa';
+import { FaRegUserCircle } from 'react-icons/fa';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import Cart from '../assets/cart.svg';
+
 import { LinkContainer } from 'react-router-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +12,10 @@ import SearchBox from './SearchBox';
 import { resetCart } from '../slices/cartSlice';
 import { useLocation } from 'react-router-dom';
 
+import { useTheme } from './ThemeContext';
+
 const Header = () => {
+  const { isDarkMode, toggleTheme } = useTheme();
   const { cartItems } = useSelector((state) => state.cart);
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -36,7 +42,7 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg='primary' variant='dark' expand='lg' collapseOnSelect>
+      <Navbar expand='lg' className='w-10' collapseOnSelect>
         <Container>
           {isAuthPage && (
             <LinkContainer to='/'>
@@ -44,7 +50,7 @@ const Header = () => {
                 <b>DropShip.</b>
               </Navbar.Brand>
             </LinkContainer>
-          ) }
+          )}
           {isAuthPage ? null : (
             <>
               <LinkContainer to='/'>
@@ -54,21 +60,27 @@ const Header = () => {
               </LinkContainer>
               <Navbar.Toggle aria-controls='basic-navbar-nav' />
               <Navbar.Collapse id='basic-navbar-nav'>
-                <Nav className='ms-auto'>
+                <Nav className='ms-auto d-flex align-items-center'>
                   <SearchBox />
-                  <LinkContainer to='/cart'>
-                    <Nav.Link className='text-light'>
-                      <FaShoppingCart /> Cart
+                  <LinkContainer to='/cart' variant='light' className='mx-3'>
+                    <Nav.Link>
+                      <div className='btn-light btn p-2 rounded-circle'>
+                        <AiOutlineShoppingCart className='cart-btn d-flex align-items-center justify-content-center rounded-circle' />
+                      </div>
                       {cartItems.length > 0 && (
-                        <Badge pill bg='warning' style={{ marginLeft: '5px' }}>
-                          {cartItems.reduce((a, c) => a + c.qty, 0)}
-                        </Badge>
-                      )}
+                            <Badge
+                              pill
+                              bg='warning'
+                              className='qty'
+                            >
+                              {cartItems.reduce((a, c) => a + c.qty, 0)}
+                            </Badge>
+                          )}
                     </Nav.Link>
                   </LinkContainer>
                   {userInfo ? (
                     <>
-                      <NavDropdown title={userInfo.name} id='username'>
+                      <NavDropdown title={<FaRegUserCircle />} id='username'>
                         <LinkContainer to='/profile'>
                           <NavDropdown.Item>Profile</NavDropdown.Item>
                         </LinkContainer>
@@ -80,7 +92,10 @@ const Header = () => {
                   ) : (
                     <LinkContainer to='/login'>
                       <Nav.Link>
-                        <FaUser /> Sign In
+                        <div className='btn-light btn p-2 rounded-circle'>
+                          <FaRegUserCircle className='profile-btn d-flex align-items-center justify-content-center rounded-circle' />
+                          
+                        </div>
                       </Nav.Link>
                     </LinkContainer>
                   )}

@@ -70,7 +70,7 @@ const CartScreen = () => {
                       type='text'
                       defaultValue='1'
                       className='cart-input'
-                      variant='flush'
+                      variant='flush' 
                     ></Form.Control>
                     <Button
                       variant='light'
