@@ -53,15 +53,10 @@ const CartScreen = () => {
                   </Col>
                   <Col md={2}>&#8377;{item.price}</Col>
                   <Col md={3} className='d-flex align-items-baseline '>
-                    <Button
+                  <Button
+                      type='button'
                       variant='light'
-                      className='m-1'
-                      onClick={() => {
-                        addToCartHandler(item, Math.max(0, item.qty - 1));
-                        if (item.qty === 1) {
-                          removeFromCartHandler(item._id);
-                        }
-                      }}
+                      onClick={() => removeFromCartHandler(item._id)}
                     >
                       &minus;
                     </Button>
