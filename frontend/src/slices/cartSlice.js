@@ -15,9 +15,7 @@ const cartSlice = createSlice({
       const existItem = state.cartItems.find((x) => x._id === item._id);
 
       if (existItem) {
-        state.cartItems = state.cartItems.map((x) =>
-          x._id === existItem._id ? item : x
-        );
+        existItem.qty += 1;
       } else { 
         state.cartItems = [...state.cartItems, item];
       }
@@ -37,7 +35,7 @@ const cartSlice = createSlice({
       state.paymentMethod = action.payload;
       localStorage.setItem('cart', JSON.stringify(state));
     },
-    clearCartItems: (state, action) => {
+    clearCartItems: (state, action) => { 
       state.cartItems = [];
       localStorage.setItem('cart', JSON.stringify(state));
     },

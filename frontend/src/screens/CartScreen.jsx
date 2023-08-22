@@ -97,7 +97,7 @@ const CartScreen = () => {
                 </Row>
               </ListGroup.Item>
             ))}
-          </ListGroup>
+          </ListGroup> 
         )}
       </Col>
       <Col md={4}>
