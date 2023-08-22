@@ -44,11 +44,7 @@ const Product = ({ product }) => {
                       disabled={product.countInStock === 0}
                       onClick={addToCartHandler}
                     >
-<<<<<<< HEAD
                        {product.countInStock === 0 ? "Out of Stock" : "Add To Cart"}
-=======
-                      Add To Cart
->>>>>>> 9d759c43a386f3b6ed6759840a9daf77dd69c1ae
                     </Button>
       </Card.Body>
     </Card>

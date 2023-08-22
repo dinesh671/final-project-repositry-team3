@@ -22,11 +22,8 @@ import Message from '../components/Message';
 import Meta from '../components/Meta';
 import { addToCart } from '../slices/cartSlice';
 import RatingStars from 'react-rating-stars-component';
-<<<<<<< HEAD
 import ProductCarouselProducts from '../components/CarouselForProducts';
 
-=======
->>>>>>> 9d759c43a386f3b6ed6759840a9daf77dd69c1ae
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
@@ -87,11 +84,7 @@ const ProductScreen = () => {
           <Meta title={product.name} description={product.description} />
           <Row>
             <Col md={6}>
-<<<<<<< HEAD
               <ProductCarouselProducts/>
-=======
-              <Image src={product.image} alt={product.name} fluid />
->>>>>>> 9d759c43a386f3b6ed6759840a9daf77dd69c1ae
             </Col>
             <Col md={3}>
               <ListGroup variant='flush'>
