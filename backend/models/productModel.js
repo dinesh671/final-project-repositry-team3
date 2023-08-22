@@ -31,6 +31,7 @@ const productSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+<<<<<<< HEAD
     image_c1: {
       type: String,
       
@@ -43,6 +44,8 @@ const productSchema = mongoose.Schema(
       type: String,
       
     },
+=======
+>>>>>>> 9d759c43a386f3b6ed6759840a9daf77dd69c1ae
     brand: {
       type: String,
       required: true,
