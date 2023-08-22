@@ -52,20 +52,38 @@ const CartScreen = () => {
                     <Link to={`/product/${item._id}`}>{item.name}</Link>
                   </Col>
                   <Col md={2}>&#8377;{item.price}</Col>
-                  <Col md={2}>
-                    <Form.Control
-                      as='select'
-                      value={item.qty}
-                      onChange={(e) =>
-                        addToCartHandler(item, Number(e.target.value))
-                      }
+                  <Col md={3} className='d-flex align-items-baseline '>
+                    <Button
+                      variant='light'
+                      className='m-1'
+                      onClick={() => {
+                        addToCartHandler(item, Math.max(0, item.qty - 1));
+                        if (item.qty === 1) {
+                          removeFromCartHandler(item._id);
+                        }
+                      }}
                     >
-                      {[...Array(item.countInStock).keys()].map((x) => (
-                        <option key={x + 1} value={x + 1}>
-                          {x + 1}
-                        </option>
-                      ))}
-                    </Form.Control>
+                      &minus;
+                    </Button>
+                    <Form.Control
+                      as='input'
+                      value={item.qty}
+                      onChange={(e) => {
+                        addToCartHandler(item, Number(e.target.value));
+                      }}
+                      min='0'
+                      type='text'
+                      defaultValue='1'
+                      className='cart-input'
+                      variant='flush'
+                    ></Form.Control>
+                    <Button
+                      variant='light'
+                      className='m-1'
+                      onClick={() => addToCartHandler(item, item.qty + 1)}
+                    >
+                      &#43;
+                    </Button>
                   </Col>
                   <Col md={2}>
                     <Button

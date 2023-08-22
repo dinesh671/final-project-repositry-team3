@@ -25,7 +25,7 @@ import RatingStars from 'react-rating-stars-component';
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
-  
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -90,10 +90,12 @@ const ProductScreen = () => {
                   <h3>{product.name}</h3>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <Rating
-                    value={product.rating}
-                    text={`${product.numReviews} reviews`}
-                  />
+                  <a href='#review'>
+                    <Rating
+                      value={product.rating}
+                      text={`${product.numReviews} reviews`}
+                    />
+                  </a>
                 </ListGroup.Item>
                 <ListGroup.Item>Price: &#8377;{product.price}</ListGroup.Item>
                 <ListGroup.Item>
@@ -159,7 +161,7 @@ const ProductScreen = () => {
               </Card>
             </Col>
           </Row>
-          <Row className='review'>
+          <Row className='review' id='review'>
             <Col md={6}>
               <h2>Reviews</h2>
               {product.reviews.length === 0 && <Message>No Reviews</Message>}
@@ -195,14 +197,13 @@ const ProductScreen = () => {
                           <option value='5'>5 - Excellent</option>
                         </Form.Control> */}
                         <RatingStars
-                  count={5}
-                  size={24}
-                  activeColor="#ffd700"
-                  value={rating}
-                  isHalf={true} 
-                  onChange={(newRating) => setRating(newRating)}
-                />
-
+                          count={5}
+                          size={24}
+                          activeColor='#ffd700'
+                          value={rating}
+                          isHalf={true}
+                          onChange={(newRating) => setRating(newRating)}
+                        />
                       </Form.Group>
                       <Form.Group className='my-2' controlId='comment'>
                         <Form.Label>Comment</Form.Label>

@@ -10,7 +10,7 @@ main {
   color: #f8e825;
 }
 
-.rating-text {
+.rating-text { 
   font-size: 0.8rem;
   font-weight: 600;
   padding-left: 0.5rem;
@@ -69,4 +69,20 @@ table th {
   text-decoration: underline !important;
   color: #0d6efd !important;
 
+}
+
+.cart-input{
+  border: none !important;
+  text-align: center;
+  padding: 0 !important;
+  outline: none !important;
+
+}
+
+input.cart-input:focus{
+  box-shadow: inset 0 0 0;
+}
+
+a{
+  text-decoration: none !important;
 }
