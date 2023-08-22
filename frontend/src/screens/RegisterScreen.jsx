@@ -56,10 +56,11 @@ const RegisterScreen = () => {
             errorMessages.push(validationErrors.password.message);
           }
           toast.error(errorMessages.join(', '));
-        } else {
-          toast.error(err.message || 'please enter required details.');
+        // } else {
+        //   toast.error(err.message || 'please enter required details.');
           
           
+        // }
         }
       }
     }
