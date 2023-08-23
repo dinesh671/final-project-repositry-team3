@@ -42,8 +42,52 @@ const PaymentScreen = () => {
               id='PayPal'
               name='paymentMethod'
               value='PayPal'
-              checked
-              onChange={(e) => setPaymentMethod(e.target.value)}
+              checked={paymentMethod === 'PayPal'}
+              onChange={() => setPaymentMethod('PayPal')}
+            ></Form.Check>
+
+            <Form.Check
+              className='my-2'
+              type='radio'
+              label='Debit Card'
+              id='DebitCard'
+              name='paymentMethod'
+              value='CreditCard'
+              checked={paymentMethod === 'CreditCard'}
+              onChange={() => setPaymentMethod('CreditCard')}
+            ></Form.Check>
+
+            <Form.Check
+              className='my-2'
+              type='radio'
+              label='Paytm'
+              id='Paytm'
+              name='paymentMethod'
+              value='Paytm'
+              checked={paymentMethod === 'Paytm'}
+              onChange={() => setPaymentMethod('Paytm')}
+            ></Form.Check>
+
+            <Form.Check
+              className='my-2'
+              type='radio'
+              label='Google Pay (GPay)'
+              id='GooglePay'
+              name='paymentMethod'
+              value='GooglePay'
+              checked={paymentMethod === 'GooglePay'}
+              onChange={() => setPaymentMethod('GooglePay')}
+            ></Form.Check>
+
+            <Form.Check
+              className='my-2'
+              type='radio'
+              label='UPI'
+              id='UPI'
+              name='paymentMethod'
+              value='UPI'
+              checked={paymentMethod === 'UPI'}
+              onChange={() => setPaymentMethod('UPI')}
             ></Form.Check>
           </Col>
         </Form.Group>
