@@ -27,7 +27,8 @@ const App = () => {
       <ToastContainer />
       <Header />
       <main className='py-3'>
-        <Container>
+        <Container variant='light'>
+
           <Outlet />
         </Container>
       </main>

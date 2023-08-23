@@ -55,18 +55,24 @@ table th {
 .card{
   text-decoration: none !important;
   color: initial !important;
+
+  
 }
 
 .card-img{
   mix-blend-mode: multiply;
+  
 }
 
 .card-title{
   text-decoration: none !important;
   color: inherit !important;
+  
+ 
 }
 .card-title:hover{
   text-decoration: underline !important;
   color: #0d6efd !important;
 
 }
+
