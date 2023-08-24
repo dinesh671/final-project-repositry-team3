@@ -1,7 +1,8 @@
 import React from 'react'
 
-export default function ProductListScreen() {
+export const ProductListScreen = () => {
   return (
     <div>ProductListScreen</div>
-  )
+  ) 
 }
+

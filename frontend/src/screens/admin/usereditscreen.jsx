@@ -1,7 +1,8 @@
 import React from 'react'
 
-export default function UserEditScreen() {
+export const UserEditScreen = () => {
   return (
     <div>UserEditScreen</div>
   )
 }
+ 

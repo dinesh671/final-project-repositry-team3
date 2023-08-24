@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { ThemeProvider } from './components/ThemeContext';
 import { useDispatch } from 'react-redux';
 import { Container } from 'react-bootstrap';
 import { Outlet } from 'react-router-dom';
@@ -27,16 +26,6 @@ const App = () => {
     <>
 
       <ToastContainer />
-      <Header />
-      <main className='py-3'>
-        <Container variant='light'>
-
-          <Outlet />
-        </Container>
-      </main>
-      <Footer />
-      <ThemeProvider>
-        <ToastContainer />
         <Header />
         <main className='py-3'>
           <Container>
@@ -44,7 +33,6 @@ const App = () => {
           </Container>
         </main>
         <Footer />
-      </ThemeProvider>
     </>
   );
 };

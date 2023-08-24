@@ -1,7 +1,8 @@
 import React from 'react'
 
-export default function userlistscreen() {
+export const UserListScreen = () => {
   return (
-    <div>userlistscreen</div>
+    <div>UserListScreen</div>
   )
 }
+ 

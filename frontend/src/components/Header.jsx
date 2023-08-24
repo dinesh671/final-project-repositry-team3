@@ -12,10 +12,8 @@ import SearchBox from './SearchBox';
 import { resetCart } from '../slices/cartSlice';
 import { useLocation } from 'react-router-dom';
 
-import { useTheme } from './ThemeContext';
 
 const Header = () => {
-  const { isDarkMode, toggleTheme } = useTheme();
   const { cartItems } = useSelector((state) => state.cart);
   const { userInfo } = useSelector((state) => state.auth);
 

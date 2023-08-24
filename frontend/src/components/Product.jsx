@@ -42,13 +42,7 @@ const Product = ({ product }) => {
         >
           Add To Cart
         </Button>
-                    <Button  className='btn-block'
-                      type='button'
-                      disabled={product.countInStock === 0}
-                      onClick={addToCartHandler}
-                    >
-                       {product.countInStock === 0 ? "Out of Stock" : "Add To Cart"}
-                    </Button>
+                    
 
       </Card.Body>
     </Card>

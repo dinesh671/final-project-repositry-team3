@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function OrderListScreen() {
+export const OrderListScreen = () => {
   return (
     <div>OrderListScreen</div>
-  )
+  ) 
 }
