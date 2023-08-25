@@ -130,6 +130,7 @@ const ProfileScreen = () => {
       </Col>
       <Col md={9}>
         <h2>My Orders</h2>
+        
         {isLoading ? (
           <Loader />
         ) : error ? (
@@ -140,6 +141,7 @@ const ProfileScreen = () => {
           <Table striped hover responsive className='table-sm'>
             <thead>
               <tr>
+                <th>Image</th>
                 <th>ID</th>
                 <th>DATE</th>
                 <th>TOTAL</th>
@@ -151,6 +153,7 @@ const ProfileScreen = () => {
             <tbody>
               {orders.map((order) => (
                 <tr key={order._id}>
+                  <td>{}</td>
                   <td>{order._id}</td>
                   <td>{order.createdAt.substring(0, 10)}</td>
                   <td>{order.totalPrice}</td>
@@ -179,9 +182,11 @@ const ProfileScreen = () => {
               ))}
             </tbody>
           </Table>
+          
         )}
       </Col>
     </Row>
+    
   );
 };
 

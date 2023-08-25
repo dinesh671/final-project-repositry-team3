@@ -45,7 +45,7 @@ const Header = () => {
           {isAuthPage && (
             <LinkContainer to='/'>
               <Navbar.Brand>
-                <b>DropShip.</b>
+                <h2><b>DropShip.</b></h2> 
               </Navbar.Brand>
             </LinkContainer>
           )}
@@ -53,7 +53,7 @@ const Header = () => {
             <>
               <LinkContainer to='/'>
                 <Navbar.Brand>
-                  <b>DropShip.</b>
+                <h2><b>DropShip.</b></h2>
                 </Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -78,10 +78,23 @@ const Header = () => {
                   </LinkContainer>
                   {userInfo ? (
                     <>
-                      <NavDropdown title={<FaRegUserCircle />} id='username'>
+                      <NavDropdown title={<FaRegUserCircle   className='profile-btn'/>} id='username'>
                         <LinkContainer to='/profile'>
                           <NavDropdown.Item>Profile</NavDropdown.Item>
                         </LinkContainer>
+                        {userInfo && userInfo.isAdmin && (
+                    <>
+                      <LinkContainer to='/admin/productlist'>
+                        <NavDropdown.Item>Products</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to='/admin/orderlist'>
+                        <NavDropdown.Item>Orders</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to='/admin/userlist'>
+                        <NavDropdown.Item>Users</NavDropdown.Item>
+                      </LinkContainer>
+                    </>
+                  )}
                         <NavDropdown.Item onClick={logoutHandler}>
                           Logout
                         </NavDropdown.Item>
@@ -99,7 +112,7 @@ const Header = () => {
                   )}
 
                   {/* Admin Links */}
-                  {userInfo && userInfo.isAdmin && (
+                  {/* {userInfo && userInfo.isAdmin && (
                     <NavDropdown title='Admin' id='adminmenu'>
                       <LinkContainer to='/admin/productlist'>
                         <NavDropdown.Item>Products</NavDropdown.Item>
@@ -111,13 +124,15 @@ const Header = () => {
                         <NavDropdown.Item>Users</NavDropdown.Item>
                       </LinkContainer>
                     </NavDropdown>
-                  )}
+                  )} */}
                 </Nav>
               </Navbar.Collapse>
             </>
           )}
         </Container>
       </Navbar>
+      
+      
     </header>
   );
 };

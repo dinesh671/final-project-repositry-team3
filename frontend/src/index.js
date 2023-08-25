@@ -27,11 +27,20 @@ import AdminRoute from './components/AdminRoute';
 import store from './store';
 import { Provider } from 'react-redux';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+<<<<<<< Updated upstream
 import { OrderListScreen } from './screens/admin/OrderListScreen';
 import { ProductListScreen } from './screens/admin/ProductListScreen';
 import { ProductEditScreen } from './screens/admin/ProductEditScreen';
 import { UserEditScreen } from './screens/admin/UserEditScreen';
 import { UserListScreen } from './screens/admin/UserListScreen';
+=======
+import AdminRoute from './components/AdminRoute';
+import OrderListScreen from './screens/admin/orderlistscreen';
+import ProductListScreen from './screens/admin/productlistscreen';
+import ProductEditScreen from './screens/admin/producteditscreen';
+import UserListScreen from './screens/admin/userlistscreen';
+import UserEditScreen from './screens/admin/usereditscreen';
+>>>>>>> Stashed changes
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -66,22 +75,34 @@ const router = createBrowserRouter(
         <Route path='/admin/userlist' element={<UserListScreen />} />
         <Route path='/admin/product/:id/edit' element={<ProductEditScreen />} />
         <Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
+<<<<<<< Updated upstream
       </Route>
     </Route>
   )
 );
+=======
+>>>>>>> Stashed changes
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <HelmetProvider>
-      <Provider store={store}>
-        <PayPalScriptProvider deferLoading={true}>
-          <RouterProvider router={router} />
-        </PayPalScriptProvider>
-      </Provider>
-    </HelmetProvider>
-  </React.StrictMode>
-);
+      </Route>
+      </Route>
+      )
+      );
 
+<<<<<<< Updated upstream
 reportWebVitals();
+=======
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(
+      <React.StrictMode>
+        <HelmetProvider>
+          <Provider store={store}>
+            <PayPalScriptProvider deferLoading={true}>
+              <RouterProvider router={router} />
+            </PayPalScriptProvider>
+          </Provider>
+        </HelmetProvider>
+      </React.StrictMode>
+      );
+
+      reportWebVitals();
+>>>>>>> Stashed changes
