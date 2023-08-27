@@ -23,7 +23,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
         (itemFromDB) => itemFromDB._id.toString() === itemFromClient._id
       );
       return {
-        ...itemFromClient,
+        ...itemFromClient, 
         product: itemFromClient._id,
         price: matchingItemFromDB.price,
         _id: undefined, 

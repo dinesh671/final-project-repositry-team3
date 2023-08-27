@@ -99,6 +99,7 @@ a{
   width: 25px;
   height: 25px;
   color: #000;
+  /* background-color: #DDEFE0; */
 }
 
 .profile-btn{
@@ -113,6 +114,7 @@ a{
 .search-btn{
   width: 40px;
   height: 40px;
+  /* background-color: #DDEFE0; */
 }
 
 .search-btn > svg{
@@ -121,9 +123,6 @@ a{
 }
 .search-input{
   width: 82% !important;
-}
-.qty{
-  
 }
 
 .filter{
@@ -134,4 +133,11 @@ a{
 
 input.filter:focus{
   box-shadow: inset 0 0 0;
+}
+.profile > a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  background-color: #DDEFE0;
 }

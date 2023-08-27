@@ -60,41 +60,41 @@ const Header = () => {
               <Navbar.Collapse id='basic-navbar-nav'>
                 <Nav className='ms-auto d-flex align-items-center'>
                   <SearchBox />
-                  <LinkContainer to='/cart' variant='light' className='mx-3'>
-                    <Nav.Link>
+                  <LinkContainer
+                    to='/cart'
+                    variant='light'
+                    className='mx-3 '
+                  >
+                    <Nav.Link className='position-relative'>
                       <div className='btn-light btn p-2 rounded-circle'>
                         <AiOutlineShoppingCart className='cart-btn d-flex align-items-center justify-content-center rounded-circle' />
                       </div>
-                      {cartItems.length > 0 && (
-                            <Badge
-                              pill
-                              bg='warning'
-                              className='qty'
-                            >
-                              {cartItems.reduce((a, c) => a + c.qty, 0)}
-                            </Badge>
-                          )}
+                  
+                        <Badge  bg='dark' style={{right: '1px'}}  className='qty position-absolute rounded-circle text-white'>
+                         <b> {0 || cartItems.reduce((a, c) => a + c.qty, 0)}</b>
+                        </Badge>
+                      
                     </Nav.Link>
                   </LinkContainer>
                   {userInfo ? (
                     <>
-                      <NavDropdown title={<FaRegUserCircle   className='profile-btn'/>} id='username'>
+                      <NavDropdown title={<FaRegUserCircle />} id='username'>
                         <LinkContainer to='/profile'>
                           <NavDropdown.Item>Profile</NavDropdown.Item>
                         </LinkContainer>
                         {userInfo && userInfo.isAdmin && (
-                    <>
-                      <LinkContainer to='/admin/productlist'>
-                        <NavDropdown.Item>Products</NavDropdown.Item>
-                      </LinkContainer>
-                      <LinkContainer to='/admin/orderlist'>
-                        <NavDropdown.Item>Orders</NavDropdown.Item>
-                      </LinkContainer>
-                      <LinkContainer to='/admin/userlist'>
-                        <NavDropdown.Item>Users</NavDropdown.Item>
-                      </LinkContainer>
-                    </>
-                  )}
+                          <NavDropdown title='Admin' id='adminmenu'>
+                            <LinkContainer to='/admin/productlist'>
+                              <NavDropdown.Item>Products</NavDropdown.Item>
+                            </LinkContainer>
+                            <LinkContainer to='/admin/orderlist'>
+                              <NavDropdown.Item>Orders</NavDropdown.Item>
+                            </LinkContainer>
+                            <LinkContainer to='/admin/userlist'>
+                              <NavDropdown.Item>Users</NavDropdown.Item>
+                            </LinkContainer>
+                          </NavDropdown>
+                        )}
                         <NavDropdown.Item onClick={logoutHandler}>
                           Logout
                         </NavDropdown.Item>
@@ -105,7 +105,6 @@ const Header = () => {
                       <Nav.Link>
                         <div className='btn-light btn p-2 rounded-circle'>
                           <FaRegUserCircle className='profile-btn d-flex align-items-center justify-content-center rounded-circle' />
-                          
                         </div>
                       </Nav.Link>
                     </LinkContainer>

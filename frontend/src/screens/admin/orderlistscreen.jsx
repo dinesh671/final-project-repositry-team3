@@ -18,13 +18,6 @@ const OrderListScreen = () => {
 
 
 
-<<<<<<< Updated upstream
-export const OrderListScreen = () => {
-  return (
-    <div>OrderListScreen</div>
-  ) 
-}
-=======
   return (
 
     <>
@@ -63,7 +56,7 @@ export const OrderListScreen = () => {
 
               <th>DELIVERED</th>
 
-              
+
 
             </tr>
 
@@ -111,7 +104,7 @@ export const OrderListScreen = () => {
 
                 </td>
 
-                
+
 
               </tr>
 
@@ -132,4 +125,3 @@ export const OrderListScreen = () => {
 
 
 export default OrderListScreen;
->>>>>>> Stashed changes
