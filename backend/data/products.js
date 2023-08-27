@@ -1,9 +1,9 @@
 const products = [
   {
     name: 'Airpods 3',
-    image: '/images/airpods.jpg',
+    image: '/images/airpods3.jpg',
  
-    image_c1: '/images/airpods3.png',
+    image_c1: '/images/airpods3edited.png',
     image_c2: '/images/air.jpg',
     image_c3: '/images/AirPods-3rd-Generation.jpg',
 
@@ -19,11 +19,11 @@ const products = [
   
   {
     name: 'iPhone 13 Pro 256GB Memory',
-    image: '/images/phone.jpg',
+    image: '/images/iphonee.jpg',
 
-    image_c1: '/images/iphone.jpg',
-    image_c2: '/images/air.webp',
-    image_c3: '/images/AirPods-3rd-Generation.jpg',
+    image_c1: '/images/13edited.jpg',
+    image_c2: '/images/i2.jpg',
+    image_c3: '/images/i3.jpg',
 
     description:
       'Introducing the iPhone 13 Pro. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life',
@@ -37,25 +37,11 @@ const products = [
   {
     name: 'Sony Playstation 5',
     image: '/images/playstation.jpg',
-    image_c1: '/images/ps5.webp',
-    image_c2: '/images/air.webp',
-    image_c3: '/images/AirPods-3rd-Generation.jpg',
+    image_c1: '/images/ps5new.jpg',
+    image_c2: '/images/ps52.jpg',
+    image_c3: '/images/ps53.jpg',
 
-    name: 'Cannon EOS 80D DSLR Camera',
-    image: '/images/camera.jpg',
-    description:
-      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-    brand: 'Cannon',
-    category: 'Electronics',
-    price: 92999,
-    countInStock: 5,
-    rating: 0,
-    numReviews: 0,
-  },
-  {
-    name: 'Sony Playstation 5',
-    image: '/images/playstation.jpg',
-
+    
     description:
       'The ultimate home entertainment center starts with PlayStation. Whether you are into gaming, HD movies, television, music',
     brand: 'Sony',
@@ -65,12 +51,13 @@ const products = [
     rating: 0,
     numReviews: 0,
   },
+  
   {
     name: 'Cannon EOS 80D DSLR Camera',
     image: '/images/camera.jpg',
-    image_c1: '/images/iphone.jpg',
-    image_c2: '/images/air.jpg',
-    image_c3: '/images/AirPods-3rd-Generation.jpg',
+    image_c1: '/images/canon1.jpg',
+    image_c2: '/images/canon2.jpg',
+    image_c3: '/images/canon3.jpg',
     description:
       'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
     brand: 'Cannon',
@@ -84,12 +71,9 @@ const products = [
   {
     name: 'Logitech G-Series Gaming Mouse',
     image: '/images/mouse.jpg',
-    image_c1: '/images/iphone.jpg',
-    image_c2: '/images/air.jpg',
-    image_c3: '/images/AirPods-3rd-Generation.jpg',
-
-    name: 'Logitech G-Series Gaming Mouse',
-    image: '/images/mouse.jpg',
+    image_c1: '/images/mouse1.jpg',
+    image_c2: '/images/mouse2.jpg',
+    image_c3: '/images/mouse3.jpg',
 
     description:
       'Get a better handle on your games with this Logitech LIGHTSYNC gaming mouse. The six programmable buttons allow customization for a smooth playing experience',
@@ -103,9 +87,9 @@ const products = [
   {
     name: 'Amazon Echo Dot 3rd Generation',
     image: '/images/alexa.jpg',
-    image_c1: '/images/iphone.jpg',
-    image_c2: '/images/air.jpg',
-    image_c3: '/images/AirPods-3rd-Generation.jpg',
+    image_c1: '/images/echo1.jpg',
+    image_c2: '/images/echo2.jpg',
+    image_c3: '/images/echo3.jpg',
 
     description:
       'Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space',

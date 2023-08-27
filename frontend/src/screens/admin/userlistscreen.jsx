@@ -5,26 +5,27 @@ import { FaTrash, FaEdit, FaCheck, FaTimes } from 'react-icons/fa';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import {
-
+  useDeleteUserMutation,
   useGetUsersQuery,
 } from '../../slices/usersApiSlice';
-
+import { toast } from 'react-toastify';
 
 const UserListScreen = () => {
   const { data: users, refetch, isLoading, error } = useGetUsersQuery();
 
-  
+  const [deleteUser] = useDeleteUserMutation();
 
-  
+  const deleteHandler = async (id) => {
+    if (window.confirm('Are you sure')) {
+      try {
+        await deleteUser(id);
+        refetch();
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+    }
+  };
 
-<<<<<<< Updated upstream
-export const UserListScreen = () => {
-  return (
-    <div>UserListScreen</div>
-  )
-}
- 
-=======
   return (
     <>
       <h1>Users</h1>
@@ -63,15 +64,18 @@ export const UserListScreen = () => {
                 <td>
                   {!user.isAdmin && (
                     <>
-                      
+                      <LinkContainer
+                        to={`/admin/user/${user._id}/edit`}
+                        style={{ marginRight: '10px' }}
+                      >
                         <Button variant='light' className='btn-sm'>
                           <FaEdit />
                         </Button>
-                      
+                      </LinkContainer>
                       <Button
                         variant='danger'
                         className='btn-sm'
-                        
+                        onClick={() => deleteHandler(user._id)}
                       >
                         <FaTrash style={{ color: 'white' }} />
                       </Button>
@@ -88,4 +92,3 @@ export const UserListScreen = () => {
 };
 
 export default UserListScreen;
->>>>>>> Stashed changes

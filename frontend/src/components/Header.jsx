@@ -40,7 +40,7 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar expand='lg' className='w-10' collapseOnSelect>
+      <Navbar expand='lg'  className='w-10 ' collapseOnSelect>
         <Container>
           {isAuthPage && (
             <LinkContainer to='/'>
