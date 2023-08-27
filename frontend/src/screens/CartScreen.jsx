@@ -53,7 +53,7 @@ const CartScreen = () => {
                   </Col>
                   <Col md={2}>&#8377;{item.price}</Col>
                   <Col md={3} className='d-flex align-items-baseline '>
-                  <Button
+                    <Button
                       type='button'
                       variant='light'
                       onClick={() => removeFromCartHandler(item._id)}
@@ -70,7 +70,7 @@ const CartScreen = () => {
                       type='text'
                       defaultValue='1'
                       className='cart-input'
-                      variant='flush' 
+                      variant='flush'
                     ></Form.Control>
                     <Button
                       variant='light'
@@ -85,14 +85,14 @@ const CartScreen = () => {
                       type='button'
                       variant='light'
                       onClick={() => removeFromCartHandler(item._id)}
-                    >
+                    > 
                       <FaTrash />
                     </Button>
                   </Col>
                 </Row>
               </ListGroup.Item>
             ))}
-          </ListGroup> 
+          </ListGroup>
         )}
       </Col>
       <Col md={4}>

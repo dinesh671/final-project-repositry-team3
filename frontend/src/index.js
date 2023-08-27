@@ -29,9 +29,9 @@ import { Provider } from 'react-redux';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { OrderListScreen } from './screens/admin/OrderListScreen';
 import { ProductListScreen } from './screens/admin/ProductListScreen';
-import { ProductEditScreen } from './screens/admin/ProductEditScreen';
 import { UserEditScreen } from './screens/admin/UserEditScreen';
 import { UserListScreen } from './screens/admin/UserListScreen';
+import ProductEditScreen from './screens/admin/ProductEditScreen';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
