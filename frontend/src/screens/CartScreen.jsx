@@ -11,7 +11,7 @@ import {
 } from 'react-bootstrap';
 import { FaTrash } from 'react-icons/fa';
 import Message from '../components/Message';
-import { addToCart, removeFromCart } from '../slices/cartSlice';
+import { addToCart, removeFromCart, deleteFromCart } from '../slices/cartSlice';
 
 const CartScreen = () => {
   const navigate = useNavigate();
@@ -21,12 +21,19 @@ const CartScreen = () => {
   const { cartItems } = cart;
 
   const addToCartHandler = async (product, qty) => {
+    if (qty<1){
+      return;
+    }
     dispatch(addToCart({ ...product, qty }));
   };
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
+   
   };
+  const deleteFromCartHandler = (id) =>{
+    dispatch(deleteFromCart(id))
+  }
 
   const checkoutHandler = () => {
     navigate('/login?redirect=/shipping');
@@ -53,13 +60,17 @@ const CartScreen = () => {
                   </Col>
                   <Col md={2}>&#8377;{item.price}</Col>
                   <Col md={3} className='d-flex align-items-baseline '>
+                    {item.qty> 1 &&(
                   <Button
                       type='button'
                       variant='light'
                       onClick={() => removeFromCartHandler(item._id)}
+                      disabled={item.qty <=1}
+                      
                     >
                       &minus;
                     </Button>
+                    )}
                     <Form.Control
                       as='input'
                       value={item.qty}
@@ -70,7 +81,7 @@ const CartScreen = () => {
                       type='text'
                       defaultValue='1'
                       className='cart-input'
-                      variant='flush' 
+                      variant='flush'
                     ></Form.Control>
                     <Button
                       variant='light'
@@ -81,18 +92,20 @@ const CartScreen = () => {
                     </Button>
                   </Col>
                   <Col md={2}>
-                    <Button
+                  <Button
                       type='button'
                       variant='light'
-                      onClick={() => removeFromCartHandler(item._id)}
-                    >
-                      <FaTrash />
-                    </Button>
+                      onClick={() => deleteFromCartHandler(item._id)}
+                  >
+                    <FaTrash />
+                  </Button>
+
                   </Col>
+
                 </Row>
               </ListGroup.Item>
             ))}
-          </ListGroup> 
+          </ListGroup>
         )}
       </Col>
       <Col md={4}>
