@@ -165,6 +165,7 @@ const ProductListScreen = () => {
             data={data.products}
             columns={columns}
             filter={filterFactory()}
+            striped hover responsive bordered={false}
           />
           <Paginate pages={data.pages} page={data.page} isAdmin={true} />
         </>
@@ -173,4 +174,4 @@ const ProductListScreen = () => {
   );
 };
 
-export default ProductListScreen;
+export default ProductListScreen

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useCreateProductMutation } from '../../slices/productsApiSlice';
 
-export const ProductCreateSCreen = () => {
+export const ProductCreateScreen = () => {
     const [createProduct, { isLoading: loadingCreate }] =
     useCreateProductMutation();
 

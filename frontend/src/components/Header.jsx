@@ -12,7 +12,6 @@ import SearchBox from './SearchBox';
 import { resetCart } from '../slices/cartSlice';
 import { useLocation } from 'react-router-dom';
 
-
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const { userInfo } = useSelector((state) => state.auth);
@@ -39,13 +38,15 @@ const Header = () => {
     location.pathname === '/login' || location.pathname === '/register';
 
   return (
-    <header>
-      <Navbar expand='lg'  className='w-10 ' collapseOnSelect>
+    <header className='sticky'>
+      <Navbar expand='lg' className='w-10 ' collapseOnSelect>
         <Container>
           {isAuthPage && (
             <LinkContainer to='/'>
               <Navbar.Brand>
-                <h2><b>DropShip.</b></h2> 
+                <h2>
+                  <b>DropShip.</b>
+                </h2>
               </Navbar.Brand>
             </LinkContainer>
           )}
@@ -53,32 +54,43 @@ const Header = () => {
             <>
               <LinkContainer to='/'>
                 <Navbar.Brand>
-                <h2><b>DropShip.</b></h2>
+                  <h2>
+                    <b>DropShip.</b>
+                  </h2>
                 </Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls='basic-navbar-nav' />
               <Navbar.Collapse id='basic-navbar-nav'>
                 <Nav className='ms-auto d-flex align-items-center'>
                   <SearchBox />
-                  <LinkContainer
-                    to='/cart'
-                    variant='light'
-                    className='mx-3 '
-                  >
+                  <LinkContainer to='/cart' variant='light' className='mx-3 '>
                     <Nav.Link className='position-relative'>
                       <div className='btn-light btn p-2 rounded-circle'>
                         <AiOutlineShoppingCart className='cart-btn d-flex align-items-center justify-content-center rounded-circle' />
                       </div>
-                  
-                        <Badge  bg='dark' style={{right: '1px'}}  className='qty position-absolute rounded-circle text-white'>
-                         <b> {0 || cartItems.reduce((a, c) => a + c.qty, 0)}</b>
-                        </Badge>
-                      
+
+                      <Badge
+                        bg='dark'
+                        style={{ right: '1px' }}
+                        className='qty position-absolute rounded-circle text-white'
+                      >
+                        <b> {0 || cartItems.reduce((a, c) => a + c.qty, 0)}</b>
+                      </Badge>
                     </Nav.Link>
                   </LinkContainer>
                   {userInfo ? (
                     <>
-                      <NavDropdown title={<FaRegUserCircle />} id='username'>
+                      <NavDropdown
+                        title={
+                          <div className='btn-light btn p-2 rounded-circle'>
+                            <FaRegUserCircle
+                              variant='light'
+                              className='profile-btn btn-light d-flex align-items-center justify-content-center rounded-circle'
+                            />
+                          </div>
+                        }
+                        id='username'
+                      >
                         <LinkContainer to='/profile'>
                           <NavDropdown.Item>Profile</NavDropdown.Item>
                         </LinkContainer>
@@ -104,7 +116,10 @@ const Header = () => {
                     <LinkContainer to='/login'>
                       <Nav.Link>
                         <div className='btn-light btn p-2 rounded-circle'>
-                          <FaRegUserCircle className='profile-btn d-flex align-items-center justify-content-center rounded-circle' />
+                          <FaRegUserCircle
+                            variant='light'
+                            className='profile-btn d-flex align-items-center justify-content-center rounded-circle'
+                          />
                         </div>
                       </Nav.Link>
                     </LinkContainer>
@@ -130,8 +145,6 @@ const Header = () => {
           )}
         </Container>
       </Navbar>
-      
-      
     </header>
   );
 };

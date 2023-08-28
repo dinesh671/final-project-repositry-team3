@@ -48,7 +48,7 @@ const CartScreen = () => {
             Your cart is empty <Link to='/'>Go Back</Link>
           </Message>
         ) : (
-          <ListGroup variant='flush'>
+          <ListGroup >
             {cartItems.map((item) => (
               <ListGroup.Item key={item._id}>
                 <Row>

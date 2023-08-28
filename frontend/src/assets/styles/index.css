@@ -1,5 +1,10 @@
 main {
   min-height: 80vh;
+  /* background-color: #dce8df; */
+}
+
+*{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .rating span {
@@ -26,6 +31,13 @@ main {
 table td,
 table th {
   text-align: center;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: #fff;
 }
 
 .review {
@@ -138,6 +150,8 @@ input.filter:focus{
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #000;
   background-color: #DDEFE0;
+}
+.dropdown-toggle::after{
+  display: none !important;
 }

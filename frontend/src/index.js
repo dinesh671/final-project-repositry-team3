@@ -28,10 +28,10 @@ import store from './store';
 import { Provider } from 'react-redux';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import ProductEditScreen from './screens/admin/ProductEditScreen';
-import OrderListScreen from './screens/admin/OrderListScreen';
 import ProductListScreen from './screens/admin/ProductListScreen';
-import { UserEditScreen } from './screens/admin/UserEditScreen';
-import UserListScreen from './screens/admin/UserListScreen';
+import OrderListScreen from './screens/admin/OrderListScreen'
+import UserListScreen from './screens/admin/UserListScreen'
+import UserEditScreen from './screens/admin/UserEditScreen'
 
 const router = createBrowserRouter(
   createRoutesFromElements(

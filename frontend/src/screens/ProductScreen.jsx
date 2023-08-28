@@ -23,8 +23,6 @@ import Meta from '../components/Meta';
 import { addToCart } from '../slices/cartSlice';
 import RatingStars from 'react-rating-stars-component';
 
-
-
 const ProductScreen = () => {
   const { id: productId } = useParams();
   const [selectedImage, setSelectedImage] = useState(null);
