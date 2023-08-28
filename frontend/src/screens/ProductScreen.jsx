@@ -192,7 +192,7 @@ const ProductScreen = () => {
                       disabled={product.countInStock === 0}
                       onClick={addToCartHandler}
                     >
-                      Add To Cart
+                      {product.countInStock === 0 ? 'Out of Stock' : 'Add To Cart'}
                     </Button>
                   </ListGroup.Item>
                 </ListGroup>
