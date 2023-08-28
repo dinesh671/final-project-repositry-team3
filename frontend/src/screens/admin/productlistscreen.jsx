@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Button, Row, Col, Image, Form } from 'react-bootstrap';
 import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
@@ -14,6 +14,7 @@ import {
 import { toast } from 'react-toastify';
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 import BootstrapTable from 'react-bootstrap-table-next';
+import ConfirmationModal from '../../components/ConfirmationModal';
 
 const ProductListScreen = () => {
   const { pageNumber } = useParams();
@@ -21,18 +22,26 @@ const ProductListScreen = () => {
   const { data, isLoading, error, refetch } = useGetProductsQuery({
     pageNumber,
   });
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [selectedProductId, setSelectedProductId] = useState(null);
 
   const [deleteProduct, { isLoading: loadingDelete }] =
     useDeleteProductMutation();
 
-  const deleteHandler = async (id) => {
-    if (window.confirm('Are you sure')) {
-      try {
-        await deleteProduct(id);
-        refetch();
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
-      }
+  const deleteHandler = (id) => {
+    setSelectedProductId(id);
+    setShowDeleteModal(true);
+  };
+
+  const confirmDeleteHandler = async () => {
+    try {
+      await deleteProduct(selectedProductId);
+      setShowDeleteModal(false);
+      setSelectedProductId(null);
+      refetch();
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
     }
   };
 
@@ -40,13 +49,16 @@ const ProductListScreen = () => {
     useCreateProductMutation();
 
   const createProductHandler = async () => {
-    if (window.confirm('Are you sure you want to create a new product?')) {
-      try {
-        await createProduct();
-        refetch();
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
-      }
+    setShowCreateModal(true);
+  };
+
+  const confirmCreateHandler = async () => {
+    try {
+      await createProduct();
+      setShowCreateModal(false);
+      refetch();
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
     }
   };
 
@@ -59,29 +71,24 @@ const ProductListScreen = () => {
     {
       dataField: 'image',
       text: 'Image',
-      formatter: (cell, row) => (
-        <Image src={cell} alt={row.name} width={50} />
-      ),
+      formatter: (cell, row) => <Image src={cell} alt={row.name} width={50} />,
     },
     {
       dataField: 'name',
       text: '',
       filter: textFilter({
         placeholder: 'Product Name',
-        getFilter: filter => filter,
+        getFilter: (filter) => filter,
         filterRenderer: (onFilter, column) => (
           <Form>
             <Form.Control
               as='input'
-              type="text"
+              type='text'
               variant='flush'
-              className="filter"
+              className='filter'
               placeholder={column.text}
-              onChange={e => onFilter(e.target.value)}
-
-            >
-
-            </Form.Control>
+              onChange={(e) => onFilter(e.target.value)}
+            ></Form.Control>
           </Form>
         ),
       }),
@@ -97,15 +104,14 @@ const ProductListScreen = () => {
       text: '',
       filter: textFilter({
         placeholder: 'Category',
-        getFilter: filter => filter,
+        getFilter: (filter) => filter,
         filterRenderer: (onFilter, column) => (
           <div>
-            
             <input
-              type="text"
-              className="form-control"
+              type='text'
+              className='form-control'
               placeholder={column.text}
-              onChange={e => onFilter(e.target.value)}
+              onChange={(e) => onFilter(e.target.value)}
             />
           </div>
         ),
@@ -161,17 +167,36 @@ const ProductListScreen = () => {
       ) : (
         <>
           <BootstrapTable
-            keyField="_id"
+            keyField='_id'
             data={data.products}
             columns={columns}
             filter={filterFactory()}
-            striped hover responsive bordered={false}
+            striped
+            hover
+            responsive
+            bordered={false}
           />
           <Paginate pages={data.pages} page={data.page} isAdmin={true} />
         </>
       )}
+
+      {/* Delete Confirmation Modal */}
+      <ConfirmationModal
+        show={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        onConfirm={confirmDeleteHandler}
+        message='Are you sure you want to delete this product?'
+      />
+
+      {/* Create Confirmation Modal */}
+      <ConfirmationModal
+        show={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
+        onConfirm={confirmCreateHandler}
+        message='Are you sure you want to create a new product?'
+      />
     </>
   );
 };
 
-export default ProductListScreen
+export default ProductListScreen;
