@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Col ,Row} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import FormContainer from '../components/FormContainer';
@@ -142,10 +142,21 @@ const submitHandler = (e) => {
 
 
   return (
-   
-    <FormContainer>
+    <>
     <CheckoutSteps step1 step2 />
-    <h1>Shipping</h1>
+    <Row>
+    <Col md={6}> 
+  <img
+    src="https://tapita.io/wp-content/uploads/2022/12/dropshipping-model.png"
+    alt="image not found"
+    style={{ width: '100%', height: '90%', marginTop:40 }}
+  />
+</Col>
+    <Col md={6}>
+    
+    
+     
+    <h1 className="text-center">Shipping</h1>
     <Form onSubmit={submitHandler}>
       <Form.Group className='my-2' controlId='country'>
         <Form.Label>Country</Form.Label>
@@ -214,8 +225,15 @@ const submitHandler = (e) => {
         Continue
       </Button>
     </Form>
-  </FormContainer>
+   
+     
+        
+  
+  </Col>
+  </Row>
+  </>
   );
 };
+
 
 export default ShippingScreen;
