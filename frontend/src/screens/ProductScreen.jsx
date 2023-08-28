@@ -22,14 +22,14 @@ import Message from '../components/Message';
 import Meta from '../components/Meta';
 import { addToCart } from '../slices/cartSlice';
 import RatingStars from 'react-rating-stars-component';
-import ProductCarouselProducts from '../components/CarouselForProducts';
+
 
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
-
+  const [selectedImage, setSelectedImage] = useState(null);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
 
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
@@ -68,6 +68,9 @@ const ProductScreen = () => {
       toast.error(err?.data?.message || err.error);
     }
   };
+  const handleThumbnailClick = (thumbnailImage) => {
+    setSelectedImage(thumbnailImage);
+  };
 
   return (
     <>
@@ -84,9 +87,43 @@ const ProductScreen = () => {
         <>
           <Meta title={product.name} description={product.description} />
           <Row>
-            <Col md={6}>
-              <ProductCarouselProducts/>
+            <Col md={4}>
+
+            <Image src={selectedImage || product.image_c1} alt={product.name} fluid />
             </Col>
+
+            <Col md={1} >
+              <ListGroup variant='flush'>
+              <ListGroup.Item>
+              <Image
+                src={product.image_c1}
+                alt={product.name}
+                fluid
+                onClick={() => handleThumbnailClick(product.image_c1)}
+                className={selectedImage === product.image_c1 ? 'border border-3 border-primary' : ''}
+              />
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Image
+                src={product.image_c2}
+                alt={product.name}
+                fluid
+                onClick={() => handleThumbnailClick(product.image_c2)}
+                className={selectedImage === product.image_c2 ? 'border border-3 border-primary' : ''}
+              />
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Image
+                src={product.image_c3}
+                alt={product.name}
+                fluid
+                onClick={() => handleThumbnailClick(product.image_c3)}
+                className={selectedImage === product.image_c3 ? 'border border-3 border-primary ' : ''}
+              />
+            </ListGroup.Item>
+              </ListGroup>
+            </Col>
+
             <Col md={3}>
               <ListGroup variant='flush'>
                 <ListGroup.Item>
@@ -164,8 +201,13 @@ const ProductScreen = () => {
               </Card>
             </Col>
           </Row>
+          <Row className='prodimg' id='prodimg'>
+
+          </Row>
           <Row className='review' id='review'>
-            <Col md={6}>
+
+            <Col md={5}>
+
               <h2>Reviews</h2>
               {product.reviews.length === 0 && <Message>No Reviews</Message>}
               <ListGroup variant='flush'>
@@ -177,8 +219,8 @@ const ProductScreen = () => {
                     <p>{review.comment}</p>
                   </ListGroup.Item>
                 ))}
-                <ListGroup.Item>
-                  <h2>Write a Customer Review</h2>
+                <ListGroup variant='flush'>
+                  <h2 md={5}>Write a Customer Review</h2>
 
                   {loadingProductReview && <Loader />}
 
@@ -231,7 +273,7 @@ const ProductScreen = () => {
                       Please <Link to='/login'>sign in</Link> to write a review
                     </Message>
                   )}
-                </ListGroup.Item>
+                </ListGroup>
               </ListGroup>
             </Col>
           </Row>
