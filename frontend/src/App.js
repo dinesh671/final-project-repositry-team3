@@ -8,6 +8,7 @@ import { logout } from './slices/authSlice';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const App = () => {
   const dispatch = useDispatch();
 
@@ -31,6 +32,9 @@ const App = () => {
           <Container>
             <Outlet />
           </Container>
+          
+          <ToastContainer/>
+         
         </main>
         <Footer />
     </>

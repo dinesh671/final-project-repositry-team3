@@ -26,7 +26,9 @@ const cartSlice = createSlice({
     },
 
     removeFromCart: (state, action) => {
-      const itemToRemove = state.cartItems.find((x) => x._id === action.payload);
+      const itemToRemove = state.cartItems.find(
+        (x) => x._id === action.payload
+      );
 
       if (itemToRemove) {
         // If the item is in the cart and its quantity is more than 1, reduce the quantity
@@ -34,9 +36,15 @@ const cartSlice = createSlice({
           itemToRemove.qty -= 1;
         } else {
           // If the quantity is 1 or less, remove the item from the cart
-          state.cartItems = state.cartItems.filter((x) => x._id !== action.payload);
+          state.cartItems = state.cartItems.filter(
+            (x) => x._id !== action.payload
+          );
         }
       }
+    },
+    deleteFromCart: (state, action) => {
+      state.cartItems = state.cartItems.filter((x) => x._id !== action.payload);
+      return updateCart(state);
     },
     saveShippingAddress: (state, action) => {
       state.shippingAddress = action.payload;
@@ -46,7 +54,7 @@ const cartSlice = createSlice({
       state.paymentMethod = action.payload;
       localStorage.setItem('cart', JSON.stringify(state));
     },
-    clearCartItems: (state, action) => { 
+    clearCartItems: (state, action) => {
       state.cartItems = [];
       localStorage.setItem('cart', JSON.stringify(state));
     },
@@ -57,6 +65,7 @@ const cartSlice = createSlice({
 export const {
   addToCart,
   removeFromCart,
+  deleteFromCart,
   saveShippingAddress,
   savePaymentMethod,
   clearCartItems,

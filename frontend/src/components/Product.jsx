@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Rating from './Rating';
 import { addToCart } from '../slices/cartSlice';
 import { useDispatch } from 'react-redux';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Product = ({ product }) => {
   const [qty, setQty] = useState(1);
@@ -11,6 +13,7 @@ const Product = ({ product }) => {
   const addToCartHandler = () => {
     dispatch(addToCart({ ...product, qty }));
     // navigate('/cart');
+    toast.success('Item added to cart successfully');
   };
   return (
     <Card variant='light' className='my-3 p-0 border-0 rounded'>
