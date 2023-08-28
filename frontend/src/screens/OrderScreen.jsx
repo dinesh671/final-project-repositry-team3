@@ -6,6 +6,9 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
+import { useNavigate } from 'react-router-dom';
+
+
 import {
   useDeliverOrderMutation,
   useGetOrderDetailsQuery,
@@ -15,6 +18,7 @@ import {
 
 const OrderScreen = () => {
   const { id: orderId } = useParams();
+  const navigate = useNavigate();
 
   const {
     data: order,
@@ -101,6 +105,11 @@ const OrderScreen = () => {
     await deliverOrder(orderId);
     refetch();
   };
+  // Automatically navigate to home when clicking the back arrow
+  window.onpopstate = () => {
+    navigate('/');
+  };
+
 
   return isLoading ? (
     <Loader />
@@ -257,11 +266,15 @@ const OrderScreen = () => {
                   </ListGroup.Item>
                 )}
             </ListGroup>
+           
+
           </Card>
         </Col>
       </Row>
     </>
   );
 };
+
+
 
 export default OrderScreen;
