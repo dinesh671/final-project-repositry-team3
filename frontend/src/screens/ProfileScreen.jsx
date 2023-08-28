@@ -67,7 +67,7 @@ const ProfileScreen = () => {
 
   return (
     <Row className='justify-content-center'>
-      <h2>
+      <h2 className='mb-4'>
         <b>Hi {userInfo.name}</b>,
       </h2>
       <Col md={8}>

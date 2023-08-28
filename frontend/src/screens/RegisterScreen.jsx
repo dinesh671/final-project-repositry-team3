@@ -4,7 +4,6 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
-
 import { useRegisterMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
 import { toast } from 'react-toastify';
@@ -21,7 +20,9 @@ const RegisterScreen = () => {
   const [register, { isLoading }] = useRegisterMutation();
 
   const { userInfo } = useSelector((state) => state.auth);
-
+  if (userInfo) {
+    navigate('/'); 
+  }
   const { search } = useLocation();
   const sp = new URLSearchParams(search);
   const redirect = sp.get('redirect') || '/';
