@@ -88,6 +88,10 @@ table th {
 
 }
 
+.edit > svg > path{
+  width: 100%;
+  height: 100%;
+}
 
 .cart-input{
   border: none !important;

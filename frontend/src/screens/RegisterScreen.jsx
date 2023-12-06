@@ -38,6 +38,8 @@ const RegisterScreen = () => {
  
     if (password !== confirmPassword) {
       toast.error('Passwords do not match');
+    }else if(name.length<5){
+      toast.error('Name must be atleast 5 characters')
     } else {
       try {
         const res = await register({ name, email, password }).unwrap();

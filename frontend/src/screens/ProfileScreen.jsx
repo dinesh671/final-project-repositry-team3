@@ -4,21 +4,19 @@ import {
   Tab,
   Row,
   Col,
-  Image,
   Form,
   Button,
   Table,
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { FaTimes } from 'react-icons/fa';
+import { FaEdit, FaTimes } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { useProfileMutation } from '../slices/usersApiSlice';
 import { useGetMyOrdersQuery } from '../slices/ordersApiSlice';
 import { setCredentials } from '../slices/authSlice';
-import { CardforCart } from '../components/CardforCart';
 
 const ProfileScreen = () => {
   const [name, setName] = useState('');
@@ -34,7 +32,8 @@ const ProfileScreen = () => {
 
   const { data: orders, isLoading, error } = useGetMyOrdersQuery();
 
-  const [updateProfile, { isLoading: loadingUpdateProfile }] = useProfileMutation();
+  const [updateProfile, { isLoading: loadingUpdateProfile }] =
+    useProfileMutation();
 
   useEffect(() => {
     setName(userInfo.name);
@@ -42,7 +41,13 @@ const ProfileScreen = () => {
     setAddress1(userInfo.address1);
     setAddress2(userInfo.address2);
     setPhonenumber(userInfo.phonenumber);
-  }, [userInfo.email, userInfo.name, userInfo.address1, userInfo.address2, userInfo.phonenumber]);
+  }, [
+    userInfo.email,
+    userInfo.name,
+    userInfo.address1,
+    userInfo.address2,
+    userInfo.phonenumber,
+  ]);
 
   const dispatch = useDispatch();
 
@@ -51,7 +56,6 @@ const ProfileScreen = () => {
   };
 
   const handleEditAddress = (field) => {
-   
     if (field === 'address1') {
       setAddress1EditMode(true);
     } else if (field === 'address2') {
@@ -60,7 +64,6 @@ const ProfileScreen = () => {
   };
 
   const handleSaveAddress = async (field) => {
-    
     if (field === 'address1') {
       setAddress1EditMode(false);
     } else if (field === 'address2') {
@@ -110,7 +113,6 @@ const ProfileScreen = () => {
               <b>Profile</b>
             </h3>
             <Form onSubmit={submitHandler}>
-             
               <Form.Group className='my-2' controlId='name'>
                 <Form.Label>Name</Form.Label>
                 <Form.Control
@@ -150,14 +152,13 @@ const ProfileScreen = () => {
                 />
               </Form.Group>
 
-              
               <Form.Group className='my-2' controlId='address1'>
                 <Form.Label>Home Address</Form.Label>
                 {isEditingAddress1 ? (
                   <>
                     <Form.Control
                       type='text'
-                      as="textarea"
+                      as='textarea'
                       placeholder='Enter Home Address'
                       value={address1}
                       onChange={(e) => setAddress1(e.target.value)}
@@ -172,30 +173,21 @@ const ProfileScreen = () => {
                   </>
                 ) : (
                   <>
-                    <Form.Control
-                      type='text'
-                      value={address1}
-                      readOnly
-                    />
-                    <Button
-                      variant='primary'
-                      onClick={() => handleEditAddress('address1')}
-                      className='mt-1'
-                    >
-                      Edit
+                    <Form.Control type='text' value={userInfo.address1} readOnly />
+                    <Button variant='light' className='btn-sm my-2'>
+                      <FaEdit />
                     </Button>
                   </>
                 )}
               </Form.Group>
 
-              
               <Form.Group className='my-2' controlId='address2'>
                 <Form.Label>Office Address</Form.Label>
                 {isEditingAddress2 ? (
                   <>
                     <Form.Control
                       type='text'
-                      as="textarea"
+                      as='textarea'
                       placeholder='Enter Office Address'
                       value={address2}
                       onChange={(e) => setAddress2(e.target.value)}
@@ -204,24 +196,15 @@ const ProfileScreen = () => {
                       variant='success'
                       onClick={() => handleSaveAddress('address2')}
                       className='mt-1'
-
                     >
                       Save
                     </Button>
                   </>
                 ) : (
                   <>
-                    <Form.Control
-                      type='text'
-                      value={address2}
-                      readOnly
-                    />
-                    <Button
-                      variant='primary'
-                      className='mt-1'
-                      onClick={() => handleEditAddress('address2')}
-                    >
-                      Edit
+                    <Form.Control type='text' value={address2} readOnly />
+                    <Button variant='light' className='btn-sm my-2'>
+                      <FaEdit />
                     </Button>
                   </>
                 )}
@@ -235,40 +218,40 @@ const ProfileScreen = () => {
                   value={phonenumber}
                   onChange={(e) => setPhonenumber(e.target.value)}
                 />
-              </Form.Group>                                                 
+              </Form.Group>
 
               <Button type='submit' variant='primary'>
                 Update
               </Button>
               {loadingUpdateProfile && <Loader />}
-              
             </Form>
           </Tab>
-          <Tab eventKey='orders' title='Orders' disabled={userInfo.isAdmin}>
-            <Row>
-              <Col>
-                <h2>My Orders</h2>
-                {isLoading ? (
-                  <Loader />
-                ) : error ? (
-                  <Message variant='danger'>
-                    {error?.data?.message || error.error}
-                  </Message>
-                ) : (
-                  <Table striped hover responsive className='table-sm'>
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>DATE</th>
-                        <th>TOTAL</th>
-                        <th>PAID</th>
-                        <th>DELIVERED</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {orders.map((order) => (
-                        <tr key={order._id}>
-                          {/* <td>
+          {!userInfo.isAdmin && (
+            <Tab eventKey='orders' title='Orders' disabled={userInfo.isAdmin}>
+              <Row>
+                <Col>
+                  <h2>My Orders</h2>
+                  {isLoading ? (
+                    <Loader />
+                  ) : error ? (
+                    <Message variant='danger'>
+                      {error?.data?.message || error.error}
+                    </Message>
+                  ) : (
+                    <Table striped hover responsive className='table-sm'>
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>DATE</th>
+                          <th>TOTAL</th>
+                          <th>PAID</th>
+                          <th>DELIVERED</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {orders.map((order) => (
+                          <tr key={order._id}>
+                            {/* <td>
                             <Image
                               src={order.image}
                               alt={order.name}
@@ -278,38 +261,39 @@ const ProfileScreen = () => {
                               rounded
                             />
                           </td> */}
-                          <td>{order._id}</td>
-                          <td>{order.createdAt.substring(0, 10)}</td>
-                          <td>{order.totalPrice}</td>
-                          <td>
-                            {order.isPaid ? (
-                              order.paidAt.substring(0, 10)
-                            ) : (
-                              <FaTimes style={{ color: 'red' }} />
-                            )}
-                          </td>
-                          <td>
-                            {order.isDelivered ? (
-                              order.deliveredAt.substring(0, 10)
-                            ) : (
-                              <FaTimes style={{ color: 'red' }} />
-                            )}
-                          </td>
-                          <td>
-                            <LinkContainer to={`/order/${order._id}`}>
-                              <Button className='btn-sm' variant='light'>
-                                Details
-                              </Button>
-                            </LinkContainer>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                )}
-              </Col>
-            </Row>
-          </Tab>
+                            <td>{order._id}</td>
+                            <td>{order.createdAt.substring(0, 10)}</td>
+                            <td>{order.totalPrice}</td>
+                            <td>
+                              {order.isPaid ? (
+                                order.paidAt.substring(0, 10)
+                              ) : (
+                                <FaTimes style={{ color: 'red' }} />
+                              )}
+                            </td>
+                            <td>
+                              {order.isDelivered ? (
+                                order.deliveredAt.substring(0, 10)
+                              ) : (
+                                <FaTimes style={{ color: 'red' }} />
+                              )}
+                            </td>
+                            <td>
+                              <LinkContainer to={`/order/${order._id}`}>
+                                <Button className='btn-sm' variant='light'>
+                                  Details
+                                </Button>
+                              </LinkContainer>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </Table>
+                  )}
+                </Col>
+              </Row>
+            </Tab>
+          )}
         </Tabs>
       </Col>
     </Row>
@@ -317,4 +301,3 @@ const ProfileScreen = () => {
 };
 
 export default ProfileScreen;
-
