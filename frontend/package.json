@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
+  "proxy": "https://abe3nzoz93.execute-api.eu-north-1.amazonaws.com",
   "dependencies": {
     "@paypal/react-paypal-js": "^7.8.2",
     "@reduxjs/toolkit": "^1.9.3",
@@ -53,3 +53,4 @@
     ]
   }
 }
+ 
